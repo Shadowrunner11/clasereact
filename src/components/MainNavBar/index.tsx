@@ -11,7 +11,7 @@ interface NavBarLinkProps {
 }
 
 
-function NavBarLink({href, label}:NavBarLinkProps){
+function NavBarLink({ href, label }:NavBarLinkProps){
   return (
     <Link to={href}>{label}</Link>
   );

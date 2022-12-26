@@ -5,7 +5,7 @@ interface INavBarProps{
   links: JSX.Element[] | JSX.Element;
 }
 
-export default function NavBar({image, links}: INavBarProps){
+export default function NavBar({ image, links }: INavBarProps){
   return(
     <nav className={style.navbar}>
       {image}

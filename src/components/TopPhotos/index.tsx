@@ -3,7 +3,7 @@ import Loader from '../Loader';
 
 
 export default function TopPhotos(){
-  const {isLoading, data } = useGetTopPhotos();
+  const { isLoading, data } = useGetTopPhotos();
 
   if(isLoading)
     return <Loader />;

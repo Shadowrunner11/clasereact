@@ -1,6 +1,6 @@
 import MainNavBar from '../components/MainNavBar';
 
-const Layout = ({children}: React.PropsWithChildren)=>{
+const Layout = ({ children }: React.PropsWithChildren)=>{
   return (
     <>
       <MainNavBar />
