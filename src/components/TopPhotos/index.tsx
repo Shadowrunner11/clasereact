@@ -6,14 +6,14 @@ interface IData {
 }
 
 export default function TopPhotos(){
-  const {isLoading, data, erros} =  useGetTopPhotos<IData[]>();
+  const {isLoading, data } = useGetTopPhotos<IData[]>();
 
   if(isLoading)
     return <Loader />;
 
   return (
     <div>
-      {data?.map((photo, index)=> <img key={index} src={photo.href}/>)}
+      {data?.map((photo, index)=> <img key={`photo-${index}`} src={photo.href}/>)}
     </div>
   );
 }

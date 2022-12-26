@@ -1,22 +1,44 @@
-import { useState } from 'react';
+import { useReducer, Reducer } from 'react';
 import ApiFetcher from '../services';
 
 const apiFetchInstance = new ApiFetcher('https://pokemon.api/');
 
-export function useGetTopPhotos<T = any>(){
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState<T | null>(null);
-  const [erros, setErros] = useState(null);
+interface IResponse{
+  isLoading: boolean;
+  data: unknown;
+  errors: unknown
+}
+
+export function useGetTopPhotos(){
+  
+  const [{isLoading, data, errors}, dispatch] = useReducer<ReducerTypePhotos>(
+    getTopPhotosReducer, 
+    {isLoading: true, data: null, errors: null}
+  );
+
 
   apiFetchInstance
     .get('/photos')
     .then((data)=>{
-      setData(data);
-      setIsLoading(false);
+      dispatch({
+        data,
+        isLoading: false
+      });
     })
-    .catch((error)=>{
-      setErros(error);
+    .catch((errors)=>{
+      dispatch({errors});
     });
 
-  return { isLoading, data, erros };
+  return { isLoading, data, errors };
 }
+
+
+function getTopPhotosReducer<T = IResponse, K = IResponse>(prevState: T, action: K){
+  return {
+    ...prevState,
+    ...action
+  };
+}
+
+
+type ReducerTypePhotos = Reducer<IResponse,Partial<IResponse>>
