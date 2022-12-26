@@ -1,0 +1,9 @@
+.logo{
+  height: 100px;
+  padding: 8px;
+}
+
+.logo > img {
+  height: 100%;
+  aspect-ratio: 1;
+}
