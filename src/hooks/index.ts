@@ -3,10 +3,15 @@ import ApiFetcher from '../services';
 
 const apiFetchInstance = new ApiFetcher('https://pokemon.api/');
 
-interface IResponse{
+interface IResponse<T =IData[]>{
   isLoading: boolean;
-  data: unknown;
+  data: T | null;
   errors: unknown
+}
+
+
+interface IData {
+  href: string
 }
 
 export function useGetTopPhotos(){
